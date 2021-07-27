@@ -26,4 +26,21 @@ class Dog : public Animal {
 		void makeSound( void ) const ;
 };
 
+class WrongAnimal {
+	protected:
+		std::string		type;
+	public:
+		std::string getType( void ) const ;
+		WrongAnimal( void );
+		~WrongAnimal( void );
+		void makeSound( void ) const ;
+};
+
+class WrongCat : public WrongAnimal {
+	public:
+		WrongCat( void );
+		~WrongCat( void );
+		void makeSound( void ) const ;
+};
+
 #endif

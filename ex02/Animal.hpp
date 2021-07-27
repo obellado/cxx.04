@@ -10,8 +10,13 @@ class Animal {
 	public:
 		std::string getType( void ) const ;
 		Animal( void );
+		Animal( Animal const & copy );
+		Animal & operator=(const Animal & copy);
 		virtual ~Animal( void );
-		virtual void makeSound( void ) const ;
+		virtual void setIdea( std::string idea ) const = 0;
+		virtual void setIdea( std::string idea, int i ) const = 0;
+		virtual std::string getIdea( int i ) const = 0;
+		virtual void makeSound( void ) const = 0;
 };
 
 class Cat : public Animal {
@@ -19,7 +24,16 @@ class Cat : public Animal {
 		Brain*   brain;
 	public:
 		Cat( void );
+		Cat( Animal const & copy );
+		Cat( Animal const * copy );
+		Cat( Cat const & copy );
+		Cat( Cat const * copy );
+		Cat & operator=(const Cat & copy);
 		virtual ~Cat( void );
+
+		virtual std::string getIdea( int i ) const ;
+		virtual void setIdea( std::string idea ) const ;
+		virtual void setIdea( std::string idea, int i ) const ;
 		virtual void makeSound( void ) const ;
 };
 
@@ -28,8 +42,19 @@ class Dog : public Animal {
 		Brain*   brain;
 	public:
 		Dog( void );
+		Dog( Animal const & copy );
+		Dog( Animal const * copy );
+		Dog( Dog const & copy );
+		Dog( Dog const * copy );
+		Dog & operator=(const Dog & copy);
 		virtual ~Dog( void );
+
+		virtual std::string getIdea( int i ) const ;
+		virtual void setIdea( std::string idea ) const ;
+		virtual void setIdea( std::string idea, int i ) const ;
 		void makeSound( void ) const ;
 };
+
+
 
 #endif
