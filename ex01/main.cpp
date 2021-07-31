@@ -46,26 +46,43 @@ int main( void )
 
 	std::cout << std::endl << "Another array:" << std::endl << std::endl;
 
+	const Dog* z = new Dog();
+    const Cat* x = new Cat();
+
+	z->setIdea("i wanna kill this cat...");
+	x->setIdea("HATE HATE HATE this people");
+
 	Animal *Array[20];
-	int e = -1;
-	while (++e < 10)
-		Array[e] = new Dog(j);
-	while (e < 19)
-		Array[e++] = new Cat(i);
+	for (int e = 0; e < 10; ++e){
+		Array[e] = new Dog(z);
+		Array[e + 10] = new Cat(x);
+	}
 
 	std::cout << std::endl << Array[8]->getType() << std::endl << std::endl;
+	std::cout << std::endl << Array[8]->getIdea(1) << std::endl << std::endl;
 	std::cout << std::endl << Array[15]->getType() << std::endl << std::endl;
+	std::cout << std::endl << Array[15]->getIdea(1) << std::endl << std::endl;
 
 	std::cout << std::endl << "Deleting another array:" << std::endl << std::endl;
 
-	while (--e >= 0)
+	for (int e = 19; e >= 0; --e)
 		delete Array[e];
+
+
+	delete z;
+	delete x;
 
 	std::cout << std::endl << "Deep copy test:" << std::endl << std::endl;
 	Dog basic;
 	{
 	Dog tmp = basic;
 	}
+
+std::cout << std::endl << "Deep copy test 2 :" << std::endl << std::endl;
+	Dog * basic2 = new Dog();
+	Dog *tmp2 = new Dog(basic2);
+	delete tmp2;
+	delete basic2;
 	std::cout << std::endl << "THE END" << std::endl << std::endl;
 	return (0);
 }

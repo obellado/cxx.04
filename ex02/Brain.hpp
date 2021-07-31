@@ -9,6 +9,9 @@ class Brain {
 		std::string		ideas[100];
 		Brain( void );
 		~Brain( void );
+		Brain( const Brain & copy );
+		Brain( Brain const * copy );
+		Brain & operator=(const Brain & copy);
 };
 
 #endif

@@ -8,15 +8,15 @@ class Animal {
 	protected:
 		std::string		type;
 	public:
-		virtual std::string getType( void ) const ;
+		std::string getType( void ) const ;
 		Animal( void );
 		Animal( Animal const & copy );
-		Animal & operator=(const Animal & copy);
+		virtual Animal & operator=(const Animal & copy);
 		virtual ~Animal( void );
 		virtual void makeSound( void ) const ;
-		virtual void setIdea( std::string idea ) const;
-		virtual void setIdea( std::string idea, int i ) const;
-		std::string getIdea( int i ) const;
+		virtual std::string getIdea( int i ) const ;
+		virtual void setIdea( std::string idea ) const ;
+		virtual void setIdea( std::string idea, int i ) const ;
 };
 
 class Cat : public Animal {
@@ -28,7 +28,7 @@ class Cat : public Animal {
 		Cat( Animal const * copy );
 		Cat( Cat const & copy );
 		Cat( Cat const * copy );
-		Cat & operator=(const Cat & copy);
+		virtual Cat & operator=(const Cat & copy);
 		virtual std::string getIdea( int i ) const ;
 		virtual void setIdea( std::string idea ) const ;
 		virtual void setIdea( std::string idea, int i ) const ;
@@ -45,7 +45,7 @@ class Dog : public Animal {
 		Dog( Animal const * copy );
 		Dog( Dog const & copy );
 		Dog( Dog const * copy );
-		Dog & operator=(const Dog & copy);
+		virtual Dog & operator=(const Dog & copy);
 		virtual std::string getIdea( int i ) const ;
 		virtual void setIdea( std::string idea ) const ;
 		virtual void setIdea( std::string idea, int i ) const ;

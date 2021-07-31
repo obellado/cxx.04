@@ -23,9 +23,6 @@ Cat::Cat( void ) : Animal() {
 Cat::Cat( Animal const & copy ) : Animal() {
 	std::cout << "Cat copy constructor 1 called" << std::endl;
 	this->brain = new Brain();
-	int i = -1;
-	while (++i < 100)
-		this->setIdea(copy.getIdea(i), i);
 	this->type = copy.getType();
 }
 
@@ -37,19 +34,13 @@ Cat::Cat( Animal const * copy ) : Animal() {
 
 Cat::Cat( Cat const & copy ) : Animal() {
 	std::cout << "Cat copy constructor 3 called" << std::endl;
-	this->brain = new Brain();
-	int i = -1;
-	while (++i < 100)
-		this->setIdea(copy.getIdea(i), i);
+	this->brain = new Brain(copy.brain);
 	this->type = copy.getType();
 }
 
 Cat::Cat( Cat const * copy ) : Animal() {
 	std::cout << "Cat copy constructor 4 called" << std::endl;
-	this->brain = new Brain();
-	int i = -1;
-	while (++i < 100)
-		this->setIdea(copy->getIdea(i), i);
+	this->brain = new Brain(copy->brain);
 	this->type = copy->getType();
 }
 
@@ -67,16 +58,13 @@ Dog::Dog( void ) : Animal() {
 Dog::Dog( Animal const & copy ) : Animal() {
 	std::cout << "Dog copy constructor 1 called" << std::endl;
 	this->brain = new Brain();
-	int i = -1;
-	while (++i < 100)
-		this->setIdea(copy.getIdea(i), i);
 	this->type = copy.getType();
 }
 
 Dog::Dog( Animal const * copy ) {
 	std::cout << "Dog copy constructor 2 called" << std::endl;
-	brain = new Brain();
-	type = copy->getType();
+	this->brain = new Brain();
+	this->type = (*copy).getType();
 }
 
 Dog::Dog( Dog const & copy ) : Animal() {
@@ -87,12 +75,9 @@ Dog::Dog( Dog const & copy ) : Animal() {
 
 Dog::Dog( Dog const * copy ) : Animal() {
 	std::cout << "Dog copy constructor 4 called" << std::endl;
-	this->brain = new Brain();
+	this->brain = new Brain(copy->brain);
 	std::cout << "Dog constructor called" << std::endl;
-	int i = -1;
-	while (++i < 100)
-		this->setIdea(copy->getIdea(i), i);
-	this->type = copy->getType();
+	this->type = (*copy).getType();
 }
 
 Dog::~Dog( void ) {
@@ -113,7 +98,7 @@ void Dog::makeSound( void ) const {
 }
 
 std::string Animal::getType( void ) const {
-	return (type);
+	return (this->type);
 }
 
 void Cat::setIdea( std::string idea ) const {
@@ -160,9 +145,7 @@ Dog & Dog::operator=(const Dog & copy) {
 	std::cout << "Dog assignation constructor called" << std::endl;
 	if (this != &copy) {
 		this->type = copy.getType();
-		int i = -1;
-		while (++i < 100)
-			this->setIdea(copy.getIdea(i), i);
+		this->brain = copy.brain;
 	}
 	return (*this);
 }
@@ -171,9 +154,7 @@ Cat & Cat::operator=(const Cat & copy) {
 	std::cout << "Cat assignation constructor called" << std::endl;
 	if (this != &copy) {
 		this->type = copy.getType();
-		int i = -1;
-		while (++i < 100)
-			this->setIdea(copy.getIdea(i), i);
+		this->brain = copy.brain;
 	}
 	return (*this);
 }

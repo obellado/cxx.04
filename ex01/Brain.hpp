@@ -10,6 +10,7 @@ class Brain {
 		Brain( void );
 		~Brain( void );
 		Brain( const Brain & copy );
+		Brain( Brain const * copy );
 		Brain & operator=(const Brain & copy);
 };
 
